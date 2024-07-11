@@ -44,8 +44,6 @@ jobs:
 
     - name: Deploy to Kubernetes
       run: |
-        export KUBECONFIG=kubeconfig.yaml
-        kubectl set image deployment/deployment-streamlit-application myapp=hkseal/streamlit-demo:latest
-
+        kubectl apply -f deployment.yaml
 # kubectl set image deployment/<deployment-name> <container-name>=hkseal/streamlit-demo:latest
 
