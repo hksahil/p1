@@ -37,13 +37,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up kubectl
-      run: |
-        sudo apt-get update && sudo apt-get install -y kubectl
-        export KUBECONFIG=kubeconfig.yaml
+    - name: Kubernetes set context
+      uses: Azure/k8s-set-context@v1
+      with:
+        method: kubeconfig
+        kubeconfig: ${{ secrets.KUBECONFIG_DATA }}
 
-    - name: Deploy to Kubernetes
+    - name: Docker Build and Push, Kubernetes apply
       run: |
         kubectl apply -f deployment.yaml
-# kubectl set image deployment/<deployment-name> <container-name>=hkseal/streamlit-demo:latest
-
