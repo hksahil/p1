@@ -46,3 +46,4 @@ jobs:
     - name: Docker Build and Push, Kubernetes apply
       run: |
         kubectl apply -f deployment.yaml
+        kubectl apply -f service.yaml
